@@ -41,6 +41,19 @@ function EditPage() {
     }
   };
 
+  const handleDeleteTodo = async () => {
+    try {
+      if (params.id !== undefined) {
+        await apiClient.deleteTodo(parseInt(params.id));
+        navigate('/');
+      } else {
+        console.error('Todo ID is undefined');
+      }
+    } catch (error) {
+      console.error('Error deleting todo:', error);
+    }
+  };
+
   useEffect(() => {
     getSingleTodo();
   }, []);
@@ -78,6 +91,9 @@ function EditPage() {
       </Select>
       <Button onClick={handleEditTodo} type="primary">
         Update Todo
+      </Button>
+      <Button onClick={handleDeleteTodo} type="primary">
+        Delete Todo
       </Button>
     </div>
   );

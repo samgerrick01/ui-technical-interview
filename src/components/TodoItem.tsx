@@ -6,26 +6,17 @@ function TodoItem(props: Todo) {
   const navigate = useNavigate();
   const item = props;
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Priority</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr onClick={() => navigate('/edit/' + item.id)} key={item.title}>
-          <td>
-            <strong>{item.title}</strong>
-          </td>
-          <td>{item.description}</td>
-          <td>
-            <em>{item.priority}</em>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <tbody>
+      <tr onClick={() => navigate('/edit/' + item.id)} key={item.title}>
+        <td>
+          <strong>{item.title}</strong>
+        </td>
+        <td>{item.description}</td>
+        <td>
+          <em>{item.priority}</em>
+        </td>
+      </tr>
+    </tbody>
   );
 }
 
