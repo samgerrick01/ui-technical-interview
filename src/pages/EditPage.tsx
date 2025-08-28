@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import TodoAPIClient, { type Todo } from '../TodoClient';
 import { useParams } from 'react-router-dom';
-import { Button, Input, Select } from 'antd';
+import { Button, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import '../styles/editPage.css';
+import Select from '../components/Select';
 
 const apiClient = new TodoAPIClient();
 
