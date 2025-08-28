@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+tbody tr {
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
