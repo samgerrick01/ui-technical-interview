@@ -1,8 +1,9 @@
-import { Button, Input, Select } from 'antd';
+import { Button, Input } from 'antd';
 import '../styles/addPage.css';
 import React, { useState } from 'react';
 import TodoAPIClient, { type CreateTodoData } from '../TodoClient';
 import { useNavigate } from 'react-router-dom';
+import Select from '../components/Select';
 
 const apiClient = new TodoAPIClient();
 
@@ -21,6 +22,13 @@ function AddPage() {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      priority: value as 'low' | 'medium' | 'high',
     }));
   };
 
@@ -46,15 +54,14 @@ function AddPage() {
       />
       <label>Priority: </label>
       <Select
-        onChange={(value) =>
-          setFormData((prevData) => ({ ...prevData, priority: value }))
-        }
+        onChange={handleSelectChange}
         placeholder="Select Priority"
-      >
-        <Select.Option value="Low">Low</Select.Option>
-        <Select.Option value="Medium">Medium</Select.Option>
-        <Select.Option value="High">High</Select.Option>
-      </Select>
+        options={[
+          { label: 'low', value: 'low' },
+          { label: 'medium', value: 'medium' },
+          { label: 'high', value: 'high' },
+        ]}
+      />
       <Button onClick={handleAddTodo} type="primary">
         Add Todo
       </Button>

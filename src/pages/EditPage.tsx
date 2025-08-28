@@ -28,6 +28,14 @@ function EditPage() {
     setTodos((prevData) => (prevData ? { ...prevData, [name]: value } : null));
   };
 
+  const handleSelectChange = (value: string) => {
+    setTodos((prevData) =>
+      prevData
+        ? { ...prevData, priority: value as 'low' | 'medium' | 'high' }
+        : null
+    );
+  };
+
   const handleEditTodo = async () => {
     try {
       if (params.id !== undefined && todo) {
@@ -60,7 +68,7 @@ function EditPage() {
 
   return (
     <div className="editPageContainer">
-      <h1>Add Todo Form</h1>
+      <h1>Edit Todo Form</h1>
       <label>Todo: </label>
       <Input
         value={todo?.title}
@@ -77,18 +85,15 @@ function EditPage() {
       />
       <label>Priority: </label>
       <Select
+        onChange={handleSelectChange}
         value={todo?.priority}
-        onChange={(value) =>
-          setTodos((prevData) =>
-            prevData ? { ...prevData, priority: value } : null
-          )
-        }
         placeholder="Select Priority"
-      >
-        <Select.Option value="low">low</Select.Option>
-        <Select.Option value="medium">medium</Select.Option>
-        <Select.Option value="high">high</Select.Option>
-      </Select>
+        options={[
+          { label: 'low', value: 'low' },
+          { label: 'medium', value: 'medium' },
+          { label: 'high', value: 'high' },
+        ]}
+      />
       <Button onClick={handleEditTodo} type="primary">
         Update Todo
       </Button>
